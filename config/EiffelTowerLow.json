@@ -1,0 +1,97 @@
+{
+  "image": "./img/EiffelTower_low.png",
+  "out": "./out/EiffelTowerLow_out.png",
+  "seed": 293483,
+  "blendMode": "add|bright|weighted",
+  "writeChannels": true,
+  "channels": [
+    {
+      "name": "BaseChannel",
+      "weight": 4
+    },
+    {
+      "name": "EdgeChannel",
+      "weight": 1,
+      "filters" : [{
+        "name": "dilate",
+        "size": 2,
+        "shape": "rect"
+      },{
+        "name": "minmax"
+      },{
+        "name": "edge",
+        "thresholds": [100, 300]
+      },{
+        "name": "dilate",
+        "size": 1,
+        "shape": "rect"
+      }
+      ],
+      "ops": [{
+        "name": "shift",
+        "delta": [10, 0],
+        "randomDelta": [5, 0]
+      }
+      ]
+    },
+    {
+      "name": "RedChannel",
+      "weight": 1,
+      "ops": [{
+        "name": "shift",
+        "delta": [30, 0],
+        "randomDelta": [20, 0]
+      }, {
+        "name": "colourmask",
+        "mask": [1, 0, 0]
+      }, {
+        "name": "snow",
+        "delta": [1,1]
+      }
+      ]
+    },
+    {
+      "name": "BlueChannel",
+      "weight": 1,
+      "ops": [{
+        "name": "shift",
+        "delta": [-20, 0],
+        "randomDelta": [-10, 0]
+      }, {
+        "name": "colourmask",
+        "mask": [0, 0, 1]
+      }, {
+        "name": "snow",
+        "delta": [1,1]
+      }
+      ]
+    },
+    {
+      "name": "GreenChannel",
+      "weight": 1,
+      "ops": [{
+        "name": "shift",
+        "delta": [30, 0],
+        "randomDelta": [10, 0]
+      }, {
+        "name": "colourmask",
+        "mask": [0, 1, 0]
+      }, {
+        "name": "snow",
+        "delta": [1,1]
+      }
+      ]
+    }
+  ],
+  "postFilters": [{
+      "name": "hsvmask",
+      "mask": [1, 1.5, 2]
+    }, {
+      "name": "interlace",
+      "size": 10,
+      "lightScale": 0.7,
+      "lerpLines": true
+
+    }
+  ]
+}

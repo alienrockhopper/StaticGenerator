@@ -1,0 +1,19 @@
+{
+  "image": "./img/Earth_low.png",
+  "out": "./out/EarthInterlace_out.png",
+  "seed": 293483,
+  "writeChannels": true,
+  "blendMode": "bright",
+  "channels": [{
+      "name": "InterlaceChannel",
+      "weight": 1,
+      "filters" : [{
+        "name": "interlace",
+        "size": 5,
+        "lightScale": 0.7,
+        "lerpLines": true
+      }
+      ]
+    }
+  ]
+}

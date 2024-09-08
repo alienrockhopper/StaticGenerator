@@ -1,0 +1,17 @@
+{
+  "image": "./img/Earth_low.png",
+  "out": "./out/EarthSaturation_out.png",
+  "seed": 293483,
+  "writeChannels": true,
+  "blendMode": "bright",
+  "channels": [{
+      "name": "SaturationChannel",
+      "weight": 1,
+      "filters" : [{
+        "name": "hsvmask",
+        "mask": [1, 2, 2]
+      }
+      ]
+    }
+  ]
+}

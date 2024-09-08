@@ -1,0 +1,37 @@
+{
+  "image": "./img/Earth_low.png",
+  "out": "./out/EarthErode_out.png",
+  "seed": 293483,
+  "writeChannels": true,
+  "blendMode": "bright",
+  "channels": [{
+      "name": "ErodeChannel",
+      "weight": 1,
+      "filters" : [{
+        "name": "erode",
+        "size": 6,
+        "shape": "ellipse"
+      }
+      ]
+    },
+    {
+      "name": "DilateChannel",
+      "weight": 1,
+      "filters" : [{
+        "name": "dilate",
+        "size": 2,
+        "shape": "rect"
+      },{
+        "name": "minmax"
+      },{
+        "name": "edge",
+        "thresholds": [200, 300]
+      },{
+        "name": "dilate",
+        "size": 1,
+        "shape": "rect"
+      }
+      ]
+    }
+  ]
+}

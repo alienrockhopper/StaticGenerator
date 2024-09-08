@@ -37,17 +37,17 @@ def blendChannels(dest, channels: list[ChannelData], mode):
 
       if mode == 'bright':
         for channel in channels:
-          if channel.img[y][x][0] == 0 and channel.img[y][x][1] == 0 and channel.img[y][x][2] == 0:
+          if channel.img[y][x][0] < 10 and channel.img[y][x][1] < 10 and channel.img[y][x][2] < 10:
             ltw -= channel.weight
 
       for channel in channels:
         match mode:
           case 'add':
-            colour += channel.img[y][x] 
+            colour = np.clip(colour + channel.img[y][x], 0, 255)
           case 'weighted':
-            colour += channel.img[y][x] * ((channel.weight / tw) if ltw > 0 else 1)
+            colour = np.clip(colour + channel.img[y][x] * ((channel.weight / tw) if ltw > 0 else 1))
           case 'bright':
-            colour += channel.img[y][x] * ((channel.weight / ltw) if ltw > 0 else 0)
+            colour = np.clip(colour + channel.img[y][x] * ((channel.weight / ltw) if ltw > 0 else 0))
 
       dest[y][x] = colour
       
@@ -138,7 +138,6 @@ def main():
   
   parser.add_argument('filename', help='The configuration file to use')
   args = parser.parse_args()
-
   
   with open(args.filename, mode="r", encoding="utf-8") as stream:
     config = json.load(stream)
@@ -155,82 +154,28 @@ def main():
     totalWeight += channel.weight
     if 'writeChannels' in config and config['writeChannels']:
       iio.imwrite(__appendToFilename(config['out'], f"ch_{channel.name}"), channel.img)
-    
-  '''
-  blended = np.zeros((imageData.height, imageData.width, 3), np.uint8)
-  blended1 = np.zeros((imageData.height, imageData.width, 3), np.uint8)
-  blended2 = np.zeros((imageData.height, imageData.width, 3), np.uint8)
-  
-  for channel in channels:
-    alpha = channel.weight / totalWeight
-    cv.addWeighted(blended, 1-alpha, channel.img, alpha, 0, blended)
-  iio.imwrite("./out1/final.png", blended)
-  
-  cv.addWeighted(channels[0].img, 0.4, channels[1].img, 0.2, 0, blended1)
-  cv.addWeighted(channels[2].img, 0.2, channels[3].img, 0.2, 0, blended2)
-  
-  iio.imwrite("./out1/final1.png", blended1)
-  iio.imwrite("./out1/final2.png", blended2)
-  '''
   
   blendModes = config['blendMode'] if 'blendMode' in config else 'add'
   for blend in blendModes.split('|'):
     cb = np.zeros((imageData.height, imageData.width, 3), np.uint8)
     blendChannels(cb, channels, blend)
+    
+    if 'postFilters' in config:
+      if 'writeChannels' in config and config['writeChannels']:
+        name = __appendToFilename(config['out'], f"b_prepost_{blend}") if '|' in blendModes else f"{config['out']}_prepost"
+        iio.imwrite(name, cb)
+      seed = config['seed'] if 'seed' in config else int(time.time())
+      ff = FilterFactory(seed)
+      ch = ChannelData(cb.copy(), 'processed', 1, [], [])
+      for pf in config['postFilters']:
+        print(f"Post processing: {pf['name']}")
+        ff.buildFilter(pf, imageData)(ch)
+      cb = ch.img
+      
     name = __appendToFilename(config['out'], f"b_{blend}") if '|' in blendModes else config['out']
     iio.imwrite(name, cb)
-  
-  
     
   return
-  if (not os.path.exists("./out/")):
-    os.mkdir("./out/")
-  # img [col][row]
-  img = iio.imread("./img/Earth.png")
-  
-  img_r = img.copy()
-  img_r[:, :, 1] = 0
-  img_r[:, :, 2] = 0
-  
-  img_g = img.copy()
-  img_g[:, :, 0] = 0
-  img_g[:, :, 2] = 0
-  
-  img_b = img.copy()
-  img_b[:, :, 0] = 0
-  img_b[:, :, 1] = 0
-  
-  #img_roll = np.roll(img.copy(), 100*3)
-  
-  #iio.imwrite("./out/Earth_roll.png", img_roll)
-  #blended = cv.addWeighted(img_roll, 0.5, img, 0.5, 0)
-  #iio.imwrite("./out/Earth_blended.png", blended)
-  
-  rng = np.random.default_rng(12345)
-  
-  img_moved = np.empty_like(img)
-  print ("StartMove")
-  process(img,
-    [
-      [
-        img_moved,
-        partial(maskColor, (0, 1, 0)),
-        partial(shift, (100, 0), (rng.integers(0, 60, img_moved.shape[0]), rng.integers(0, 1, img_moved.shape[1])) ),
-        partial(snow, (5, 5))
-      ]
-    ])
-  print ("EndMove")
-  iio.imwrite("./out/Earth_moved.png", img_moved)
-  img_moved = cv.addWeighted(img_moved, 0.3, img, 0.7, 0)
-  iio.imwrite("./out/Earth_blended.png", img_moved)
-  print ("WrittenMove")
-  
-  
-  iio.imwrite("./out/Earth_red.png", img_r)
-  iio.imwrite("./out/Earth_green.png", img_g)
-  iio.imwrite("./out/Earth_blue.png", img_b)
-  
-  print("Static Done!")
 
 if __name__ == '__main__':
   sys.exit(main())
