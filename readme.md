@@ -1,14 +1,17 @@
 Static Generator<br/>
-  Simple application to generate static distortion on an image driven by the JSON configuration file.
+  A simple application to generate static distortion on an image driven by a JSON configuration file. 
+  
+  See examples of the json file in the config folder.
 
 Usage <br/>
 &nbsp;python3 main.py ./path/to/config.json
 
-Config files<br/>
-&nbsp;See examples in config folder
+Config File Format<br/>
+&nbsp;See examples in the config folder
 
 Installation<br/>
 &nbsp;Get pip for your environment
+
 &nbsp;pip install -r requirements.txt
 
 Examples<br/>
