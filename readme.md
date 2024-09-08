@@ -17,13 +17,14 @@ Original:<br/>
 ![Earth](https://github.com/alienrockhopper/StaticGenerator/blob/main/img/Earth_low.png)
 Add Blend:<br/>
 ![Earth Add](https://github.com/alienrockhopper/StaticGenerator/blob/main/examples/EarthLowAdd.png)
-
+<br />
 Bright Blend:<br/>
 ![Earth Bright](https://github.com/alienrockhopper/StaticGenerator/blob/main/examples/EarthLowBright.png)
 
 File: ./config/EiffelTowerLow.json<br/>
 Original:<br/>
 ![Eiffel Tower](https://github.com/alienrockhopper/StaticGenerator/blob/main/img/EiffelTower_low.png)
+<br />
 Bright Blend:<br/>
 ![Eiffel Tower Bright](https://github.com/alienrockhopper/StaticGenerator/blob/main/examples/EiffelTowerLowBright.png)
 
@@ -34,6 +35,7 @@ Weighted Blend:<br/>
 File: ./config/SnowBoarder.json<br/>
 Original:<br/>
 ![Snow Boarder](https://github.com/alienrockhopper/StaticGenerator/blob/main/img/SnowBoarder.png)
+<br />
 
 Add Blend:<br/>
 ![Snow Boarder Add](https://github.com/alienrockhopper/StaticGenerator/blob/main/examples/SnowBoarderAdd.png)
