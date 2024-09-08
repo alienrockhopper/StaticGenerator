@@ -28,4 +28,4 @@ Weighted Blend:
 
 
 File: ./config/SnowBoarder.json
-(https://github.com/alienrockhopper/StaticGenerator/blob/main/examples/SnowBoarderAdd.png)
+![Snow Boarder Add](https://github.com/alienrockhopper/StaticGenerator/blob/main/examples/SnowBoarderAdd.png)
