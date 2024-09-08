@@ -31,5 +31,8 @@ File: ./config/SnowBoarder.json<br/>
 Add Blend:<br/>
 ![Snow Boarder Add](https://github.com/alienrockhopper/StaticGenerator/blob/main/examples/SnowBoarderAdd.png)
 
-Weight Blend:<br/>
+Bright Blend:<br/>
+![Snow Boarder Bright](https://github.com/alienrockhopper/StaticGenerator/blob/main/examples/SnowBoarderBright.png)
+
+Weighted Blend:<br/>
 ![Snow Boarder Weighted](https://github.com/alienrockhopper/StaticGenerator/blob/main/examples/SnowBoarderWeighted.png)
