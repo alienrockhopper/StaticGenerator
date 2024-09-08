@@ -31,7 +31,7 @@ def blendChannels(dest, channels: list[ChannelData], mode):
       y = it.multi_index[0]
       x = it.multi_index[1]
       
-      print(f'Blending x:{x:5} y:{y:5} / {leny:5}', end='\r')
+      print(f'Blending {mode} x:{x:5} y:{y:5} / {leny:5}', end='\r')
       colour = [0, 0, 0]
       ltw = tw
 
