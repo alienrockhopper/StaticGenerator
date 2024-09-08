@@ -1,0 +1,41 @@
+{
+  "image": "./img/Earth_low.png",
+  "out": "./out2/Earth_out.png",
+  "seed": 111222,
+  "blendMode": "add|weighted|bright",
+  "writeChannels": true,
+  "channels": [
+    {
+      "name": "RedChannel",
+      "weight": 1,
+      "filters": [
+        {
+          "name": "colourmask",
+          "mask": [1, 0, 0]
+        }
+      ]
+    },
+    {
+      "name": "GreyChannel",
+      "weight": 1,
+      "filters": [
+        {
+          "name": "grey"
+        }
+      ]
+    },
+    {
+      "name": "EdgeChannel",
+      "weight": 1,
+      "filters": [
+        {
+          "name": "grey"
+        },
+        {
+          "name": "edge",
+          "thresholds": [150, 300]
+        }
+      ]
+    }
+  ]
+}

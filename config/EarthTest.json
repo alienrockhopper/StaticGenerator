@@ -1,0 +1,59 @@
+{
+  "image": "./img/Earth_low.png",
+  "out": "./out1/EarthTest_out.png",
+  "seed": 111222,
+  "blendMode": "add|bright|weighted",
+  "channels": [
+    {
+      "name": "BaseChannel",
+      "weight": 3
+    },
+    {
+      "name": "RedChannel",
+      "weight": 1,
+      "ops": [{
+        "name": "shift",
+        "delta": [100, 0],
+        "randomDelta": [100, 0]
+      }, {
+        "name": "colourmask",
+        "mask": [1, 0, 0]
+      }, {
+        "name": "snow",
+        "delta": [2,2]
+      }
+      ]
+    },
+    {
+      "name": "BlueChannel",
+      "weight": 1,
+      "ops": [{
+        "name": "shift",
+        "delta": [-200, 0],
+        "randomDelta": [-80, 0]
+      }, {
+        "name": "colourmask",
+        "mask": [0, 0, 1]
+      }, {
+        "name": "snow",
+        "delta": [2,2]
+      }
+      ]
+    },
+    {
+      "name": "GreenChannel",
+      "weight": 1,
+      "ops": [{
+        "name": "shift",
+        "delta": [200, 0]
+      }, {
+        "name": "colourmask",
+        "mask": [0, 1, 0]
+      }, {
+        "name": "snow",
+        "delta": [2,2]
+      }
+      ]
+    }
+  ]
+}

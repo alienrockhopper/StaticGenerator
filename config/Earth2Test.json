@@ -1,0 +1,75 @@
+{
+  "image": "./img/Earth_low.png",
+  "out": "./out1/Earth2Test_out.png",
+  "blendMode": "add|weighted|bright",
+  "channels": [
+    {
+      "name": "BaseChannel",
+      "weight": 1
+    },
+    {
+      "name": "EdgeChannel",
+      "weight": 1,
+      "filters": [
+        {
+          "name": "grey"
+        },
+        {
+          "name": "edge",
+          "thresholds": [150, 300]
+        }
+      ],
+      "ops": [{
+        "name": "shift",
+        "randomDelta": [30, 0]
+      }]
+    },
+    {
+      "name": "RedChannel",
+      "weight": 1,
+      "ops": [{
+        "name": "shift",
+        "delta": [100, 100],
+        "randomDelta": [100, 20]
+      }, {
+        "name": "colourmask",
+        "mask": [1, 0, 0]
+      }, {
+        "name": "snow",
+        "delta": [2,2]
+      }
+      ]
+    },
+    {
+      "name": "BlueChannel",
+      "weight": 1,
+      "ops": [{
+        "name": "shift",
+        "delta": [-200, -100],
+        "randomDelta": [-80, -60]
+      }, {
+        "name": "colourmask",
+        "mask": [0, 0, 1]
+      }, {
+        "name": "snow",
+        "delta": [4,4]
+      }
+      ]
+    },
+    {
+      "name": "GreenChannel",
+      "weight": 1,
+      "ops": [{
+        "name": "shift",
+        "delta": [200, -100]
+      }, {
+        "name": "colourmask",
+        "mask": [0, 1, 0]
+      }, {
+        "name": "snow",
+        "delta": [2,2]
+      }
+      ]
+    }
+  ]
+}
