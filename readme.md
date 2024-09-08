@@ -14,18 +14,20 @@ Installation<br/>
 Examples<br/>
 File: ./config/EarthLow.json
 Add Blend:
-(https://github.com/alienrockhopper/StaticGenerator/blob/main/examples/EarthLowAdd.png)
+![Earth Weighted](https://github.com/alienrockhopper/StaticGenerator/blob/main/examples/EarthLowAdd.png)
 
 Bright Blend:
-(https://github.com/alienrockhopper/StaticGenerator/blob/main/examples/EarthLowBright.png)
+![Earth Weighted](https://github.com/alienrockhopper/StaticGenerator/blob/main/examples/EarthLowBright.png)
 
 File: ./config/EiffelTowerLow.json
 Bright Blend:
-(https://github.com/alienrockhopper/StaticGenerator/blob/main/examples/EiffelTowerLowBright.png)
+![Eiffel Tower Bright](https://github.com/alienrockhopper/StaticGenerator/blob/main/examples/EiffelTowerLowBright.png)
 
 Weighted Blend:
-(https://github.com/alienrockhopper/StaticGenerator/blob/main/examples/EiffelTowerLowWeight.png)
+![Eiffel Tower Weighted](https://github.com/alienrockhopper/StaticGenerator/blob/main/examples/EiffelTowerLowWeighted.png)
 
 
 File: ./config/SnowBoarder.json
 ![Snow Boarder Add](https://github.com/alienrockhopper/StaticGenerator/blob/main/examples/SnowBoarderAdd.png)
+
+![Snow Boarder Weighted](https://github.com/alienrockhopper/StaticGenerator/blob/main/examples/SnowBoarderWeighted.png)
