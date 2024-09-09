@@ -123,6 +123,3 @@ def __applyFunc1d(foo, channel):
 
 def __applyFunc(foo, channel):
   channel.img = np.apply_along_axis(lambda x: foo(x), 2, channel.img)
-
-#0.25 0.5 1.0 1.0 0.5 0.25
-  
